@@ -11,6 +11,20 @@
 * ƒtƒ@ƒCƒ‹‚ğì¬‚¹‚æB
 */
 /* -------------------------------------------------------------- */
+bool is_prime(int num) {
+ if (num < 2) return false;  // 1‚Í‘f”‚Å‚Í‚È‚¢‚È‚Ì‚Åfalse
+ else if (num == 2) return true;  // 2‚Í‘f”‚È‚Ì‚Åtrue‚ğo—Í‚·‚é
+ else if (num % 2 == 0) return false;  // ‹ô”‚Í‚ ‚ç‚©‚¶‚ßœ‚­
+ double sqrtNum = sqrt(num);
+ for (int i = 3; i <= sqrtNum; i += 2) {
+  if (num % i == 0) {
+   // ‘f”‚Å‚Í‚È‚¢
+   return false;
+  }
+ } 
+ // ‘f”‚Å‚ ‚é
+ return true;
+}
 int nth_prime(unsigned int a, unsigned int b, unsigned int n) {
 	int current = a;
 	int count = 0;
