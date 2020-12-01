@@ -11,31 +11,31 @@
 * ファイルを作成せよ。
 */
 /* -------------------------------------------------------------- */
+//関数の型 bool
+//引数 int
+//内容 素数判定を行い素数であればtrue素数でなければfalse返す。
 bool is_prime(int num) {
- if (num < 2) return false;  // 1は素数ではないなのでfalse
- else if (num == 2) return true;  // 2は素数なのでtrueを出力する
- else if (num % 2 == 0) return false;  // 偶数はあらかじめ除く
- double sqrtNum = sqrt(num);
- for (int i = 3; i <= sqrtNum; i += 2) {
-  if (num % i == 0) {
-   // 素数ではない
-   return false;
-  }
- } 
- // 素数である
- return true;
+	if (num < 2) return false;
+	//もしnumが2より小さい場合、0を返す。    
+	if (num == 2) return true;
+	//もしnumが2だった場合、1を返す
+	for (int i = 2; i <= num / 2; i++) {
+		if (num%i == 0) return false;
+		//もし、numがほかの数（i）で割り切れたら素数ではないので、0を返す。    
+	}
+	return true;
+	//素数であるときのみtrueを返す。
 }
 int nth_prime(unsigned int a, unsigned int b, unsigned int n) {
 	int current = a;
 	int count = 0;
 	do {
-		if ((current))++count;
+		if (is_prime(current))++count;
 		if (count == n)return current;
 		current += b;
 	} while (current <= CPP2_PRIME_UPPER_LIMIT);
-return -1;
+	return -1;
 }
-int nth_prime(unsigned int a, unsigned int d, unsigned int n);
 int main() {
 	std::cout << "答え" << 92809 << "出力値" << nth_prime(367, 186, 151) << std::endl;
 	std::cout << "答え" << 6709 << "出力値" << nth_prime(179, 10, 203) << std::endl;
@@ -50,5 +50,6 @@ int main() {
 	std::cout << "答え" << 22699 << "出力値" << nth_prime(259, 170, 40) << std::endl;
 	std::cout << "答え" << 25673 << "出力値" << nth_prime(269, 58, 102) << std::endl;
 	// 以下、同様に、入出力例通りになるか確認せよ。
+	std::cin.get();
 	return 0;
 }
