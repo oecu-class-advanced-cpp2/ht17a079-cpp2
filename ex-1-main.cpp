@@ -16,26 +16,32 @@
 //内容 素数判定を行い素数であればtrue素数でなければfalse返す
 bool is_prime(int num) {
 	if (num < 2) return false;
-	//もしnumが2より小さい場合0を返す    
+	//もしnumが2より小さい場合falseを返す    
 	if (num == 2) return true;
-	//もしnumが2だった場合1を返す
+	//もしnumが2だった場合trueを返す
 	for (int i = 2; i <= num / 2; i++) {
 		if (num%i == 0) return false;
-		//もし、numがほかの数（i）で割り切れたら素数ではないので0を返す    
+		//もし、numがほかの数（i）で割り切れたら素数ではないのでfalseを返す    
 	}
 	return true;
 	//素数であるときのみtrueを返す
 }
-int nth_prime(unsigned int a, unsigned int b, unsigned int n) {
+//関数の型 int
+//引数 int
+//内容　aから始まりdずつ上昇し素数をカウントしてn番目の素数を返す
+int nth_prime(unsigned int a, unsigned int d, unsigned int n) {
 	int current = a;
 	int count = 0;
 	do {
-		if (is_prime(current))++count;
-		if (count == n)return current;
-		current += b;
+		if (is_prime(current))++count;//素数判定が正解ならインクリメント
+		if (count == n)return current;//count値がnと同じならn番目の数字を返す
+		current += d;
 	} while (current <= CPP2_PRIME_UPPER_LIMIT);
 	return -1;
 }
+//関数の型 bool
+//引数 int
+//内容 二つの数を比較し、正解ならtrue不正解ならfalseを返す
 bool check(int answer, int unanswered) {
 	if (answer == unanswered) return true;
 	//答えと入力値を比較して正解ならtrueを返す
@@ -74,7 +80,6 @@ int main() {
 	else {
 		std::cout << "答えと出力値のテストに異常がありました" << std::endl;
 	}
-	// 以下、同様に、入出力例通りになるか確認せよ。
 	std::cin.get();
 	return 0;
 }
