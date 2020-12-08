@@ -8,6 +8,11 @@ namespace cpp2 {
 	*/
 	/* --------------------------------------------------------------------- */
 	class mcxi {
+		mcxi() {
+
+		}
+	};
+	class to_strings {
 
 	};
 } // namespace cpp2
