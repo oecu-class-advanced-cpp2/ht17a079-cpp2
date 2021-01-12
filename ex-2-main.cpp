@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 namespace cpp2 {
 	/* --------------------------------------------------------------------- */
@@ -80,7 +81,6 @@ private:
 private:
 	int value_;
 };
-}
 
 int main() {
 	cpp2::mcxi a0("xi");
