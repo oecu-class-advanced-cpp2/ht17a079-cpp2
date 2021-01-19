@@ -3,30 +3,15 @@
 #include <algorithm>
 #include <sstream>
 
+using namespace std;
+
 namespace cpp2 {
-	/* --------------------------------------------------------------------- */
 	/*
 	mcxi
-
 	mcxi 記法を解析するクラスです。
 	*/
-	/* --------------------------------------------------------------------- */
 	class mcxi {
 	public:
-		/* ----------------------------------------------------------------- */
-		/*
-		mcxi
-
-		指定された文字列を解析して、オブジェクトを初期化します。
-		以下の場合には例外が創出されます。
-
-		1. [2-9,m,c,x,i] 以外の文字が出現した場合
-		2. 2 文字続けて数字 (2-9) が出現した場合
-		3. m, c, x, i がこの順序で出現しなかった場合
-		ただし、例えば mx のように、特定の文字をスキップする事は許容
-		されます。
-		*/
-		/* ----------------------------------------------------------------- */
 		mcxi(const std::string& s) : value_(0) {
 			int digit = 0;
 			for (auto pos = s.begin(); pos != s.end(); ++pos) {
@@ -43,43 +28,35 @@ namespace cpp2 {
 		//コンストラクタ
 		mcxi() {}
 
-		/* ----------------------------------------------------------------- */
 		/*
 		operator+
 
 		2 つのオブジェクトの加算結果を取得します。
 		*/
-		/* ----------------------------------------------------------------- */
 		mcxi operator+(const mcxi& rhs) {
 			mcxi i;
-			i.value_ = value_ + rhs.valie;
+			i.value_ = value_ + rhs.value_;
 			return i;
 		}
-
-		/* ----------------------------------------------------------------- */
 		/*
 		to_string
 
 		現在の値を mcxi 記法に変換します。
 		*/
-		/* ----------------------------------------------------------------- */
 		std::string to_string() const {
 			std::stringstream moji;
-			int m_value = value_;
-			int c_value = value_;
-			int x_value = value_;
-			int i_value = value_;
+			int value = value_;
 			int i = 0;
 
 			//mの文字変換
-			i = m_value / 1000;
+			i = value / 1000;
 			if (i == 1) moji << 'm';
 			if (i > 1) {
 				moji << i;
 				moji << 'm';
 			}
 			//cの文字変換
-			i = c_value % 1000;
+			i = value % 1000;
 			i = i / 100;
 			if (i == 1) moji << 'c';
 			if (i > 1) {
@@ -87,7 +64,7 @@ namespace cpp2 {
 				moji << 'c';
 			}
 			//xの文字変換
-			i = x_value % 100;
+			i = value % 100;
 			i = i / 10;
 			if (i == 1) moji << 'x';
 			if (i > 1) {
@@ -95,7 +72,7 @@ namespace cpp2 {
 				moji << 'x';
 			}
 			//iの文字変換
-			i = x_value % 10;
+			i = value % 10;
 			if (i == 1) moji << 'i';
 			if (i > 1) {
 				moji << i;
@@ -103,18 +80,13 @@ namespace cpp2 {
 			}
 			return moji.str();
 		}
-
 	private:
-
 		int unit(char c) {
-
 			if (c == 'm')return 1000;
 			if (c == 'c')return 100;
 			if (c == 'x')return 10;
 			if (c == 'i')return 1;
 		}
-
-
 	private:
 		int value_;
 	};
@@ -170,4 +142,7 @@ int main() {
 	cpp2::mcxi b9("c2x8i");
 	auto result9 = a9 + b9;
 	std::cout << "9m9c9x9i" << " " << result9.to_string() << std::endl;
+
+	cin.get();
+	return 0;
 }
