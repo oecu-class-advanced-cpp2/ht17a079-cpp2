@@ -85,7 +85,6 @@ namespace cpp2 {
 			moji << 'c';
 		}
 		//x‚Ì•¶Žš•ÏŠ·
-		i = x_value % 1000;
 		i = x_value % 100;
 		i = x_value / 10;
 		if (i == 1) moji << 'x';
@@ -94,8 +93,6 @@ namespace cpp2 {
 			moji << 'x';
 		}
 		//i‚Ì•¶Žš•ÏŠ·
-		i = x_value % 1000;
-		i = x_value % 100;
 		i = x_value % 10;
 		if (i == 1) moji << 'i';
 		if (i > 1) {
