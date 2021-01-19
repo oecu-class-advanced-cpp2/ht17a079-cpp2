@@ -40,82 +40,85 @@ namespace cpp2 {
 				}
 			}
 		}
-	}
+		//コンストラクタ
+		mcxi() {}
 
+		/* ----------------------------------------------------------------- */
+		/*
+		operator+
 
-	/* ----------------------------------------------------------------- */
-	/*
-	operator+
-
-	2 つのオブジェクトの加算結果を取得します。
-	*/
-	/* ----------------------------------------------------------------- */
-	mcxi operator+(const mcxi& rhs) {
-
-	}
-
-	/* ----------------------------------------------------------------- */
-	/*
-	to_string
-
-	現在の値を mcxi 記法に変換します。
-	*/
-	/* ----------------------------------------------------------------- */
-	std::string to_string() const {
-		std::stringstream moji;
-		int m_value = value_;
-		int c_value = value_;
-		int x_value = value_;
-		int i_value = value_;
-		int i = 0;
-
-		//mの文字変換
-		i = m_value / 1000;
-		if (i == 1) moji << 'm';
-		if (i > 1) {
-			moji << i;
-			moji << 'm';
+		2 つのオブジェクトの加算結果を取得します。
+		*/
+		/* ----------------------------------------------------------------- */
+		mcxi operator+(const mcxi& rhs) {
+			mcxi i;
+			i.value_ = value_ + rhs.valie;
+			return i;
 		}
-		//cの文字変換
-		i = c_value % 1000;
-		i = c_value / 100;
-		if (i == 1) moji << 'c';
-		if (i > 1) {
-			moji << i;
-			moji << 'c';
+
+		/* ----------------------------------------------------------------- */
+		/*
+		to_string
+
+		現在の値を mcxi 記法に変換します。
+		*/
+		/* ----------------------------------------------------------------- */
+		std::string to_string() const {
+			std::stringstream moji;
+			int m_value = value_;
+			int c_value = value_;
+			int x_value = value_;
+			int i_value = value_;
+			int i = 0;
+
+			//mの文字変換
+			i = m_value / 1000;
+			if (i == 1) moji << 'm';
+			if (i > 1) {
+				moji << i;
+				moji << 'm';
+			}
+			//cの文字変換
+			i = c_value % 1000;
+			i = i / 100;
+			if (i == 1) moji << 'c';
+			if (i > 1) {
+				moji << i;
+				moji << 'c';
+			}
+			//xの文字変換
+			i = x_value % 100;
+			i = i / 10;
+			if (i == 1) moji << 'x';
+			if (i > 1) {
+				moji << i;
+				moji << 'x';
+			}
+			//iの文字変換
+			i = x_value % 10;
+			if (i == 1) moji << 'i';
+			if (i > 1) {
+				moji << i;
+				moji << 'i';
+			}
+			return moji.str();
 		}
-		//xの文字変換
-		i = x_value % 100;
-		i = x_value / 10;
-		if (i == 1) moji << 'x';
-		if (i > 1) {
-			moji << i;
-			moji << 'x';
+
+	private:
+
+		int unit(char c) {
+
+			if (c == 'm')return 1000;
+			if (c == 'c')return 100;
+			if (c == 'x')return 10;
+			if (c == 'i')return 1;
 		}
-		//iの文字変換
-		i = x_value % 10;
-		if (i == 1) moji << 'i';
-		if (i > 1) {
-			moji << i;
-			moji << 'i';
-		}
-		return moji.str();
-	}
-
-private:
-
-	int unit(char c) {
-
-		if (c == 'm')return 1000;
-		if (c == 'c')return 100;
-		if (c == 'x')return 10;
-		if (c == 'i')return 1;
-	}
 
 
-private:
-	int value_;
-};
+	private:
+		int value_;
+	};
+}
 
 int main() {
 	cpp2::mcxi a0("xi");
