@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include <sstream>
 
 namespace cpp2 {
@@ -61,18 +62,51 @@ namespace cpp2 {
 	*/
 	/* ----------------------------------------------------------------- */
 	std::string to_string() const {
+		std::stringstream moji;
+		int m_value = value_;
+		int c_value = value_;
+		int x_value = value_;
+		int i_value = value_;
+		int i = 0;
 
+		//m‚Ì•¶Žš•ÏŠ·
+		i = m_value / 1000;
+		if (i == 1) moji << 'm';
+		if (i > 1) {
+			moji << i;
+			moji << 'm';
+		}
+		//c‚Ì•¶Žš•ÏŠ·
+		i = c_value % 1000;
+		i = c_value / 100;
+		if (i == 1) moji << 'c';
+		if (i > 1) {
+			moji << i;
+			moji << 'c';
+		}
+		//x‚Ì•¶Žš•ÏŠ·
+		i = x_value % 1000;
+		i = x_value % 100;
+		i = x_value / 10;
+		if (i == 1) moji << 'x';
+		if (i > 1) {
+			moji << i;
+			moji << 'x';
+		}
+		//i‚Ì•¶Žš•ÏŠ·
+		i = x_value % 1000;
+		i = x_value % 100;
+		i = x_value % 10;
+		if (i == 1) moji << 'i';
+		if (i > 1) {
+			moji << i;
+			moji << 'i';
+		}
+		return moji.str();
 	}
 
 private:
 
-	/* ----------------------------------------------------------------- */
-	/*
-	unit
-
-	’PˆÊ‚É‘Î‰ž‚·‚é’l‚ðŽæ“¾‚µ‚Ü‚·B
-	*/
-	/* ----------------------------------------------------------------- */
 	int unit(char c) {
 
 		if (c == 'm')return 1000;
